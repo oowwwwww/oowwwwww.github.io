@@ -22,7 +22,7 @@
 
   
 
-  <title>Archives: 2020/10 | A Blog</title>
+  <title>🍉02 | A Blog</title>
 
   
 
@@ -196,63 +196,157 @@
 </header>
 
     
-<div class="post-wrap archive">
+<article id="post">
+  <div class="post-title">🍉02</div>
+  
+<div class="post-meta">
     
     
-        
-        
-        <div class="yearzodiac">
-                <div class="years">
-                  <h1>2020  <i class="symbolic-animals icon-rat"></i></h1>
-                </div>
-        </div>
-        
-        <li class="archive-item">
-            <a class="archive-item-link" href="/2020/10/31/%F0%9F%8D%8902/">🍉02</a>
-            <span class="archive-item-date">2020-10-31</span>
-        </li>
+      <div class="post-meta-item date">
+        <span title="Created 2020.10.31"><i class="far fa-calendar-alt"></i> 2020.10.31</span>
+      </div>
+      <div class="post-meta-item updated">
+        <span title="Updated 2020.11.02"><i class="far fa-calendar-check"></i> 2020.11.02</span>
+      </div>
+     
     
+      <div class="post-meta-item categories">
         
+          <i class="fas fa-inbox article-meta__icon"></i> <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
         
-        <li class="archive-item">
-            <a class="archive-item-link" href="/2020/10/31/%F0%9F%8D%8901/">🍉01</a>
-            <span class="archive-item-date">2020-10-31</span>
-        </li>
+      </div>
+     
     
+     <div class="post-meta-item wordcount">
         
+          <i class="fas fa-pencil-alt"></i> <span class="post-count">947 words</span>
+           
         
-        <li class="archive-item">
-            <a class="archive-item-link" href="/2020/10/26/machine-learning-1/">machine-learning-1</a>
-            <span class="archive-item-date">2020-10-26</span>
-        </li>
-    
-        
-        
-        <li class="archive-item">
-            <a class="archive-item-link" href="/2020/10/23/cs231n-notes0/">cs231n notes0</a>
-            <span class="archive-item-date">2020-10-23</span>
-        </li>
-    
-        
-        
-        <li class="archive-item">
-            <a class="archive-item-link" href="/2020/10/21/hello-world/">Hello World</a>
-            <span class="archive-item-date">2020-10-21</span>
-        </li>
-    
-    <div class="arc_pag">
-       <nav class="paginator">
-      
-            
-</nav>
-
-     </div>
+          <i class="far fa-clock"></i> <span class="post-count">3 min</span>
+                               
+      </div>
+     
 </div>
 
 
+  
+  <div class="content">
+        <div><blockquote>
+<ul>
+<li><p>错误率（error rate): 即如果在m个样本中有a个样本分类错误，则错误率E = a / m; 相应的，1 - a / m称为“精度”</p>
+</li>
+<li><p>训练误差（traning error)或经验误差（empirical error)是学习器在训练集上的误差，在新样本上的误差称为泛化误差（generalization error)</p>
+</li>
+<li><p><em>机器学习的”太好了“的时候是过拟合，相对的就是欠拟合，对于一个任务有不同的算法可以选择，对同一个算法使用不同的参数配置时也会产生不同的模型，使用哪一种参数配置就是”模型选择“（model selection)问题,对不同的模型的泛化误差进行评估，选择误差最小的那个</em></p>
+</li>
+</ul>
+</blockquote>
+<h3 id="一-评估方法"><a href="#一-评估方法" class="headerlink" title="一. 评估方法"></a>一. 评估方法</h3><h4 id="1-1-留出法"><a href="#1-1-留出法" class="headerlink" title="1.1 留出法"></a>1.1 留出法</h4><p> 留出法是直接把数据集D划分为两个互斥的子集，其中一个作为训练集S，另一个作为测试集T， 即D= S∪T，在S上训练出模型之后再在T上评估其测试误差，作为泛化误差的估计。</p>
+<ul>
+<li>训练和测试集的划分要尽量保持数据分布的一致性，比如在分类任务中至少要保持样本的类别比例相似。</li>
+<li>采用留出法有一个问题：若令<strong>训练集S包含绝大多数样本</strong>，则训练出的模型可能更接近于用D训练的模型，但由于T比较小，评估结果可能不够稳定准确。但是如果<strong>测试集T多一些样本</strong>，则训练集S与D差别更大了，被评估的模型与用D训练出的模型相比可能有较大差别，从而降低了评估结果的保真性（fidelity)，常用做法使将大约**<u>2/3~4/5</u>**的样本用于训练，剩余样本用于测试。</li>
+</ul>
+<h4 id="1-2-交叉验证"><a href="#1-2-交叉验证" class="headerlink" title="1.2 交叉验证"></a>1.2 交叉验证</h4><p>先将数据集D划分为k个大小相似的互斥子集，即D = D<del>1</del> ∪ D<del>2</del> ∪··· ∪D<del>k</del> ,每个子集都尽可能保持数据分布的一致性，即从D中通过分层采样得到。然后用选择其中k - 1个子集作为训练集，剩下的一个子集作为测试集，这样就可以进行k次训练和测试，最终返回k次测试结果的均值。</p>
+<ul>
+<li>k一般取10， 称为10折交叉验证。</li>
+<li>为了防止分类带来的误差，要随即使用不同的划分重复p次，最终的评估结果是这p次k折交叉验证结果的均值。</li>
+<li>假若数据集D中有m个样本，若令k = m, 则得到了交叉验证法的一个特例：留一法（Leave-One-Out, 简称LOO)。</li>
+</ul>
+<h4 id="1-3-自助法"><a href="#1-3-自助法" class="headerlink" title="1.3 自助法"></a>1.3 自助法</h4><p>给定包含m个样本的数据集D， 我们对它进行采样产生数据集D‘：每次随机从D中挑选一个样本，然后再将该样本放入到D中，重复m次，就得到了包含m个样本的训练集D’</p>
+<blockquote>
+<p>样本在m次采用中始终不被采到的概率使$(1 - \frac{1}{m})^m$，取极限得到：<br>$$<br>\lim\limits_{m\to\infty}(1 - \frac{1}{m})^m\mapsto \frac{1}{e} \thickapprox 0.368<br>$$<br>即通过自助采样，初始数据集D中约有36.8%的样本没有出现在采用数据集D‘中， 于是可以将D’作为训练集，D\D’作为测试集，这样实际评估和期望评估的样本都是m个，并且仍有数据总量约1/3的可以用于测试。</p>
+</blockquote>
+<h4 id="1-4-调参与最终模型"><a href="#1-4-调参与最终模型" class="headerlink" title="1.4 调参与最终模型"></a>1.4 调参与最终模型</h4><blockquote>
+<p>机器学习常设计两类参数：一类是算法的参数，也叫“超参数”。另一类时模型的参数，数目可能很多，一个“深度学习”甚至有上百亿个参数。</p>
+</blockquote>
+<h3 id="二"><a href="#二" class="headerlink" title="二."></a>二.</h3></div>
+        
+          <div class="post-copyright">
+                  <div class="copyright-item">
+                      <span> Author: Aurora</span>
+                  </div>
+                  <div class="copyright-item">
+                      <span> Link: <a href="https://oowwwwww.github.io/2020/10/31/%F0%9F%8D%8902/">https://oowwwwww.github.io/2020/10/31/%F0%9F%8D%8902/</a></span>
+                  </div>
+                  <div class="copyright-item">
+                      <span> License: 本博客所有文章除特别声明外，均采用许可协议 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> 转载请注明出处！</span>
+                  </div>
+          </div>
+        
+  </div>
+
+  <div class="share-reward">
+    <div class="share">
+        
+<div class="social-share" data-sites="facebook,twitter,wechat,weibo,qq"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script>
 
 
-
+      </div>
+        <div class="reward">
+          
+  <div style="padding: 10px 0; margin-left: 20px; width: 90%; text-align: center;">
+    <div class="reward-content">
+        <ul id="donateBox" class="list pos-a">
+          
+           <li id="PayPal"><a href="https://paypal.me" target="_blank" title="PayPal">PayPal</a></li>
+            
+          
+            <li id="AliPay" title="Alipay"><img data-img="/img/alipay.jpg" onerror=this.onerror=null,this.src="/img/loading.gif"></img></li>
+               
+                 
+            <li id="WeChat" title="Wechatpay"><img date-img="/img/wechat.jpg" onerror=this.onerror=null,this.src="/img/loading.gif"></img></li>
+                      
+          </ul>
+        <div id="QRBox" class="pos-f left-100">
+          <div id="MainBox"></div>
+        </div>
+    </div>
+  </div>
+  
+        </div>
+    </div>
+    
+    <div class="post_tags">
+      
+        <i class="fas fa-tag"></i> <a href="/tags/%F0%9F%8D%89/" class="tag">🍉</a>
+      
+    </div>
+    <div class="post-nav">
+      
+        <div class="post-nav-prev post-nav-item">
+            <a href="/2020/11/02/machine-learning-2/" >machine-learning-2<i class="fa fa-chevron-left"></i></a>
+        </div>
+      
+      
+        <div class="post-nav-next post-nav-item">
+            <a href="/2020/10/31/%F0%9F%8D%8901/" >🍉01<i class="fa fa-chevron-right"></i></a>
+        </div>
+      
+    </div>
+      
+    <div id="valine"></div>
+    <script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script>
+    <script>
+          new Valine({
+            el: '#valine',
+            appId: "",
+            appKey: "",
+            avatar: "mm",
+            lang: "",
+            meta: 'nick,mail,link'.split(','),
+            requiredFields: 'nick,mail'.split(','),
+            placeholder: "评论记得带上邮箱,你的留言我会马上收到邮箱提醒哒",
+            pageSize:'10',
+            recordIP: 'false',
+            serverURLs: "",
+            emojiCDN: "",
+            enableQQ: "true",
+          });
+    </script>
+    
+</article>
 
     
 <a id="gotop" href="javascript:" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
@@ -383,6 +477,45 @@ if (document.getElementsByClassName('mermaid').length) {
   
 
 
+  <script>
+    jQuery(document).ready(function () {
+      var QRBox = $('#QRBox');
+      var MainBox = $('#MainBox');
+      var AliPayQR = '/img/alipay.jpg';
+      var WeChanQR = '/img/wechat.jpg';
+
+      function showQR(QR) {
+        if (QR) {
+          MainBox.css('background-image', 'url(' + QR + ')');
+        }
+        $('#donateBox').addClass('blur');
+        QRBox.fadeIn(300, function (argument) {
+          MainBox.addClass('showQR');
+        });
+      }
+
+      $('#donateBox>li').click(function (event) {
+        var thisID = $(this).attr('id');
+        if (thisID === 'AliPay') {
+          showQR(AliPayQR);
+        } else if (thisID === 'WeChat') {
+          showQR(WeChanQR);
+        }
+      });
+
+      MainBox.click(function (event) {
+        MainBox.removeClass('showQR').addClass('hideQR');
+        setTimeout(function (a) {
+          QRBox.fadeOut(300, function (argument) {
+            MainBox.removeClass('hideQR');
+          });
+          $('#DonateText,#donateBox,#github').removeClass('blur');
+        }, 600);
+
+      });
+    });
+  </script>
+  
 
 
 

@@ -22,7 +22,7 @@
 
   
 
-  <title>Archives: 2020/10 | A Blog</title>
+  <title>machine-learning-4 | A Blog</title>
 
   
 
@@ -196,63 +196,149 @@
 </header>
 
     
-<div class="post-wrap archive">
+<article id="post">
+  <div class="post-title">machine-learning-4</div>
+  
+<div class="post-meta">
     
     
-        
-        
-        <div class="yearzodiac">
-                <div class="years">
-                  <h1>2020  <i class="symbolic-animals icon-rat"></i></h1>
-                </div>
-        </div>
-        
-        <li class="archive-item">
-            <a class="archive-item-link" href="/2020/10/31/%F0%9F%8D%8902/">🍉02</a>
-            <span class="archive-item-date">2020-10-31</span>
-        </li>
+      <div class="post-meta-item date">
+        <span title="Created 2020.11.02"><i class="far fa-calendar-alt"></i> 2020.11.02</span>
+      </div>
+      <div class="post-meta-item updated">
+        <span title="Updated 2020.11.09"><i class="far fa-calendar-check"></i> 2020.11.09</span>
+      </div>
+     
     
+      <div class="post-meta-item categories">
         
+          <i class="fas fa-inbox article-meta__icon"></i> <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
         
-        <li class="archive-item">
-            <a class="archive-item-link" href="/2020/10/31/%F0%9F%8D%8901/">🍉01</a>
-            <span class="archive-item-date">2020-10-31</span>
-        </li>
+      </div>
+     
     
+     <div class="post-meta-item wordcount">
         
+          <i class="fas fa-pencil-alt"></i> <span class="post-count">313 words</span>
+           
         
-        <li class="archive-item">
-            <a class="archive-item-link" href="/2020/10/26/machine-learning-1/">machine-learning-1</a>
-            <span class="archive-item-date">2020-10-26</span>
-        </li>
-    
-        
-        
-        <li class="archive-item">
-            <a class="archive-item-link" href="/2020/10/23/cs231n-notes0/">cs231n notes0</a>
-            <span class="archive-item-date">2020-10-23</span>
-        </li>
-    
-        
-        
-        <li class="archive-item">
-            <a class="archive-item-link" href="/2020/10/21/hello-world/">Hello World</a>
-            <span class="archive-item-date">2020-10-21</span>
-        </li>
-    
-    <div class="arc_pag">
-       <nav class="paginator">
-      
-            
-</nav>
-
-     </div>
+          <i class="far fa-clock"></i> <span class="post-count">1 min</span>
+                               
+      </div>
+     
 </div>
 
 
+  
+  <div class="content">
+        <div><h3 id="多元线性回归"><a href="#多元线性回归" class="headerlink" title="多元线性回归"></a>多元线性回归</h3><p>$h\theta(x) = \theta _0 + \theta _1 x_1 + \theta _ 2 x_2 + ··· + \theta _n x_n = \theta ^T x$</p>
+<p>其中<br>$$ { }<br>\theta = \begin{bmatrix}</p>
+<p>\theta _1\</p>
+<p>\theta _2\</p>
+<p>···</p>
+<p>\theta _n\</p>
+<p>\end{bmatrix}<br>$$</p>
+<p>$$<br>x = \begin{bmatrix}</p>
+<p>x_1&amp;x_2 ··· x_3</p>
+<p>\end{bmatrix}<br>$$</p>
+<h3 id="多元梯度下降法"><a href="#多元梯度下降法" class="headerlink" title="多元梯度下降法"></a>多元梯度下降法</h3><p>与梯度下降法相同，将多个参数套用之前的公式就可以得到每一个参数的梯度下降的等式。</p>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn/images/2020/machine-learning/image-20201104165612187.png" alt="image-20201104165612187" style="zoom: 50%;" />
+
+<h3 id="梯度下降算法的实用技巧"><a href="#梯度下降算法的实用技巧" class="headerlink" title="梯度下降算法的实用技巧"></a>梯度下降算法的实用技巧</h3><h4 id="1-特征值缩放（Feature-Scaling）"><a href="#1-特征值缩放（Feature-Scaling）" class="headerlink" title="1. 特征值缩放（Feature Scaling）"></a>1. 特征值缩放（Feature Scaling）</h4><p>为了让每一个特征值的取值位于[-1, 1]之间，如果取值为[-100, 100]或者[-0.001, 0.001]可以通过除以或者乘上最大值的绝对值来把它们进行缩放。</p>
+<p>除了进行特征值缩放之外，有的时候还需要进行**均值归一化(mean normalization)**，就是将$x_i$代替为$x_i - μ_i$。</p>
+<p><strong>特征值缩放和均值归一化的目的是为了让梯度下降的更快，收敛所需的迭代次数更少。</strong></p>
+<h4 id="2-学习率（Learning-rate"><a href="#2-学习率（Learning-rate" class="headerlink" title="2. 学习率（Learning rate)"></a>2. 学习率（Learning rate)</h4><p>当下将梯度如下图所示时，一般是学习率比较高导致一直横跳。</p>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn/images/2020/machine-learning/image-20201104221703684.png" alt="image-20201104221703684" style="zoom:50%;" />
+
+<p>一般来说，学习率小的话，代价函数每一轮都可以减少，但是如果学习率太小，梯度下降算法收敛的就很慢。</p>
+</div>
+        
+          <div class="post-copyright">
+                  <div class="copyright-item">
+                      <span> Author: Aurora</span>
+                  </div>
+                  <div class="copyright-item">
+                      <span> Link: <a href="https://oowwwwww.github.io/2020/11/02/machine-learning-4/">https://oowwwwww.github.io/2020/11/02/machine-learning-4/</a></span>
+                  </div>
+                  <div class="copyright-item">
+                      <span> License: 本博客所有文章除特别声明外，均采用许可协议 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> 转载请注明出处！</span>
+                  </div>
+          </div>
+        
+  </div>
+
+  <div class="share-reward">
+    <div class="share">
+        
+<div class="social-share" data-sites="facebook,twitter,wechat,weibo,qq"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script>
 
 
-
+      </div>
+        <div class="reward">
+          
+  <div style="padding: 10px 0; margin-left: 20px; width: 90%; text-align: center;">
+    <div class="reward-content">
+        <ul id="donateBox" class="list pos-a">
+          
+           <li id="PayPal"><a href="https://paypal.me" target="_blank" title="PayPal">PayPal</a></li>
+            
+          
+            <li id="AliPay" title="Alipay"><img data-img="/img/alipay.jpg" onerror=this.onerror=null,this.src="/img/loading.gif"></img></li>
+               
+                 
+            <li id="WeChat" title="Wechatpay"><img date-img="/img/wechat.jpg" onerror=this.onerror=null,this.src="/img/loading.gif"></img></li>
+                      
+          </ul>
+        <div id="QRBox" class="pos-f left-100">
+          <div id="MainBox"></div>
+        </div>
+    </div>
+  </div>
+  
+        </div>
+    </div>
+    
+    <div class="post_tags">
+      
+        <i class="fas fa-tag"></i> <a href="/tags/machine-learning/" class="tag">machine learning</a>
+      
+    </div>
+    <div class="post-nav">
+      
+        <div class="post-nav-prev post-nav-item">
+            <a href="/2020/11/07/machine-learning-7/" >machine-learning-7<i class="fa fa-chevron-left"></i></a>
+        </div>
+      
+      
+        <div class="post-nav-next post-nav-item">
+            <a href="/2020/11/02/machine-learning-3/" >machine-learning-3<i class="fa fa-chevron-right"></i></a>
+        </div>
+      
+    </div>
+      
+    <div id="valine"></div>
+    <script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script>
+    <script>
+          new Valine({
+            el: '#valine',
+            appId: "",
+            appKey: "",
+            avatar: "mm",
+            lang: "",
+            meta: 'nick,mail,link'.split(','),
+            requiredFields: 'nick,mail'.split(','),
+            placeholder: "评论记得带上邮箱,你的留言我会马上收到邮箱提醒哒",
+            pageSize:'10',
+            recordIP: 'false',
+            serverURLs: "",
+            emojiCDN: "",
+            enableQQ: "true",
+          });
+    </script>
+    
+</article>
 
     
 <a id="gotop" href="javascript:" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
@@ -383,6 +469,45 @@ if (document.getElementsByClassName('mermaid').length) {
   
 
 
+  <script>
+    jQuery(document).ready(function () {
+      var QRBox = $('#QRBox');
+      var MainBox = $('#MainBox');
+      var AliPayQR = '/img/alipay.jpg';
+      var WeChanQR = '/img/wechat.jpg';
+
+      function showQR(QR) {
+        if (QR) {
+          MainBox.css('background-image', 'url(' + QR + ')');
+        }
+        $('#donateBox').addClass('blur');
+        QRBox.fadeIn(300, function (argument) {
+          MainBox.addClass('showQR');
+        });
+      }
+
+      $('#donateBox>li').click(function (event) {
+        var thisID = $(this).attr('id');
+        if (thisID === 'AliPay') {
+          showQR(AliPayQR);
+        } else if (thisID === 'WeChat') {
+          showQR(WeChanQR);
+        }
+      });
+
+      MainBox.click(function (event) {
+        MainBox.removeClass('showQR').addClass('hideQR');
+        setTimeout(function (a) {
+          QRBox.fadeOut(300, function (argument) {
+            MainBox.removeClass('hideQR');
+          });
+          $('#DonateText,#donateBox,#github').removeClass('blur');
+        }, 600);
+
+      });
+    });
+  </script>
+  
 
 
 
