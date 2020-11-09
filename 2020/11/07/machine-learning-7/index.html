@@ -206,14 +206,20 @@
         <span title="Created 2020.11.07"><i class="far fa-calendar-alt"></i> 2020.11.07</span>
       </div>
       <div class="post-meta-item updated">
-        <span title="Updated 2020.11.07"><i class="far fa-calendar-check"></i> 2020.11.07</span>
+        <span title="Updated 2020.11.09"><i class="far fa-calendar-check"></i> 2020.11.09</span>
       </div>
      
+    
+      <div class="post-meta-item categories">
+        
+          <i class="fas fa-inbox article-meta__icon"></i> <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+        
+      </div>
      
     
      <div class="post-meta-item wordcount">
         
-          <i class="fas fa-pencil-alt"></i> <span class="post-count">0 words</span>
+          <i class="fas fa-pencil-alt"></i> <span class="post-count">434 words</span>
            
         
           <i class="far fa-clock"></i> <span class="post-count">1 min</span>
@@ -225,7 +231,47 @@
 
   
   <div class="content">
-        <div></div>
+        <div><h3 id="过拟合问题"><a href="#过拟合问题" class="headerlink" title="过拟合问题"></a>过拟合问题</h3><p>  能过够很好的拟合训练集样本，但是泛化(generalize)能力很烂，根本没办法使用它预测新样本。</p>
+<p> 一般来说，如果训练集的样本数量比较少，就可能会出现过度拟合的问题。</p>
+<p><strong>减少过拟合的options：</strong></p>
+<ol>
+<li><p>减少特征的数量</p>
+<ul>
+<li>人工地检查特征变量，主观地减少个别不重要的特征。</li>
+<li>模型选择算法：可以自动地选择重要的特征。</li>
+</ul>
+</li>
+<li><p>正则化（<strong>regularization</strong>)</p>
+<ul>
+<li><p>保留所有的特征，减少量集（maginitude)或者参数$\theta _j$ 的大小。</p>
+</li>
+<li><p>线性回归的代价函数公式：<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4//images/2020/machine-learning/image-20201109152704318.png" alt="image-20201109152704318" style="zoom:50%;" />        </p>
+<p>为了防止有的参数过大导致了过拟合，所以要缩小每个参数的值，在这个公示的后面加上一个正则化项：</p>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4//images/2020/machine-learning/image-20201109152856123.png" alt="image-20201109152856123" style="zoom: 67%;" />
+
+<ul>
+<li>在这个公式中的$\lambda$是正则化参数，作用就是控制两个不同目标之间的取舍，在正则化后的公式中有两个“目标项”，其一是拟合数据的效果，即$\sum _{i = 1}^{m}(h_\theta(x^{(i)} - y^{i}))^2$;另一部分就是要保持参数尽量的小，即$\lambda \sum _{j = 1}^n \theta_j^2$部分，$\lambda$的作用就是平衡这两项，让拟合的效果很好的同时，各个参数的权重也比较优化（防止出现过度拟合的情况）。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="线性回归的正则化"><a href="#线性回归的正则化" class="headerlink" title="线性回归的正则化"></a>线性回归的正则化</h4><ol>
+<li><strong>梯度下降（带正则化的）</strong></li>
+</ol>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4/images/2020/machine-learning/image-20201109175856748.png" alt="image-20201109175856748" style="zoom: 67%;" />
+
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4/images/2020/machine-learning/image-20201109175915769.png" alt="image-20201109175915769" style="zoom:67%;" />
+
+<ol start="2">
+<li><p><strong>Normal euqation(正规方程)</strong></p>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4/images/2020/machine-learning/image-20201109180043363.png" alt="image-20201109180043363" style="zoom:67%;" />
+
+<p>在正则化项的帮助下，正规方程的方法中奇异矩阵的情况会得到改善，因为正则化项的矩阵是(n + 1) × (n + 1)的，所以这个确保了它的你矩阵是存在的。</p>
+</li>
+</ol>
+<h4 id="逻辑回归的正则化"><a href="#逻辑回归的正则化" class="headerlink" title="逻辑回归的正则化"></a>逻辑回归的正则化</h4><p><img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4/images/2020/machine-learning/image-20201109181524598.png" alt="image-20201109181524598"></p>
+</div>
         
           <div class="post-copyright">
                   <div class="copyright-item">
@@ -275,6 +321,8 @@
     </div>
     
     <div class="post_tags">
+      
+        <i class="fas fa-tag"></i> <a href="/tags/machine-learning/" class="tag">machine learning</a>
       
     </div>
     <div class="post-nav">
