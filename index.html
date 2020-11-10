@@ -201,6 +201,99 @@
     
       <div class="recent-post-item">
           <div class="post-title ">
+            <a href="/2020/11/09/machine-learning-6/">machine-learning-6</a>
+          </div>
+          <div class="post-meta">
+            
+            
+              <div class="post-meta-item date">
+                <span title="Created 2020.11.09"><i class="far fa-calendar-alt"></i> 2020.11.09</span>
+              </div>
+              <div class="post-meta-item updated">
+                <span title="Updated 2020.11.10"><i class="far fa-calendar-check"></i> 2020.11.10</span>
+              </div>
+             
+            
+              <div class="post-meta-item categories">
+                
+                  <i class="fas fa-inbox article-meta__icon"></i> <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+                
+              </div>
+             
+            
+             <div class="post-meta-item wordcount">
+                
+                  <i class="fas fa-pencil-alt"></i> <span class="post-count">617 words</span>
+                   
+                
+                  <i class="far fa-clock"></i> <span class="post-count">2 min</span>
+                                       
+              </div>
+             
+        </div>
+          <div class="content">
+            
+                  <h3 id="逻辑回归（Logistic-Regression）"><a href="#逻辑回归（Logistic-Regression）" class="headerlink" title="逻辑回归（Logistic Regression）"></a>逻辑回归（Logistic Regression）</h3><blockquote>
+<p>虽然是叫作Logistic Regression，但是它仍然是一个分类的算法。它被用作进行离散分类，能够对y的0和1的值进行分类。</p>
+</blockquote>
+<h4 id="Logistic-Regression-Model（假设函数）"><a href="#Logistic-Regression-Model（假设函数）" class="headerlink" title="Logistic Regression Model（假设函数）"></a>Logistic Regression Model（假设函数）</h4><p>想要 <img src= "/img/loading.gif" data-src="C:/Users/Liu%20Xinzhu/AppData/Roaming/Typora/typora-user-images/image-20201109112521428.png" alt="image-20201109112521428" style="zoom: 67%;" /></p>
+<p>Model：</p>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4/images/2020/machine-learning//image-20201106110409628.png" alt="image-20201106110409628" style="zoom:67%;" />
+
+<p>其中——&gt;<strong>sigmoid function</strong>(sigmoid function和logistic function是同义的，指的是一个公式，一般用来神经网络中的隐层，将一个实数映射到(0, 1)的区间，可以用来做二分类)</p>
+<h4 id="决策边界（decision-boundary"><a href="#决策边界（decision-boundary" class="headerlink" title="决策边界（decision boundary)"></a>决策边界（decision boundary)</h4><p>在逻辑回归中，$h _\theta(x)$是假设函数，它的值是我们预测的值，在逻辑回归在它的值在[0, 1]，我们预测：</p>
+<p>当${h_\theta}\left( x \right)&gt;=0.5$时，预测 $y=1$。</p>
+<p>当${h_\theta}\left( x \right)&lt;0.5$时，预测 $y=0$ 。</p>
+<p>根据上图sigmoid function函数的图像，可以知道当</p>
+<p>$z=0$ 时 $g(z)=0.5$</p>
+<p>$z&gt;0$ 时 $g(z)&gt;0.5$</p>
+<p>$z&lt;0$ 时 $g(z)&lt;0.5$</p>
+<p>又$z={\theta^{T}}x$  ，即：<br>${\theta^{T}}x&gt;=0$  时，预测 $y=1$<br>${\theta^{T}}x&lt;0$  时，预测 $y=0$</p>
+<p>现在假设有一个模型：</p>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4/images/2020/machine-learning/image-20201106224305089.png" alt="image-20201106224305089" style="zoom:50%;" />
+
+<p>并且设参数为向量[-3 1 1]。则当，即时，模型将预测 。可以绘制直线， 这条线就是模型的分界线，将预测为1的区域和预测为0的区域分隔开。</p>
+<h4 id="代价函数（cost-function"><a href="#代价函数（cost-function" class="headerlink" title="代价函数（cost function)"></a>代价函数（cost function)</h4><p>在之前的线性回归模型中，我们定义的代价函数是所有模型误差的平方和。理论上来说，我们也可以对逻辑回归模型沿用这个定义，但是问题在于，当把带入到这样的代价函数中时，得到的代价函数将是一个非凸函数（<strong>non-convexfunction</strong>)。</p>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4/images/2020/machine-learning/image-20201106230033743.png" alt="image-20201106230033743" style="zoom:50%;" />
+
+
+
+<p>线性回归的代价函数为： <img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4.2//images/2020/machine-learning/image-20201110082923343.png" alt="image-20201110082923343" style="zoom:67%;" />。</p>
+<p>重新定义逻辑回归的代价函数为：<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4.2//images/2020/machine-learning/image-20201110082940960.png" alt="image-20201110082940960" style="zoom:67%;" />，其中</p>
+<p><img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4.2//images/2020/machine-learning/image-20201109180904537.png" alt="image-20201109180904537"></p>
+<p>y是实际值，而$h_\theta$是预测值</p>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4/images/2020/machine-learning/image-20201106234530900.png" alt="image-20201106234530900" style="zoom:50%;" />
+
+<p>当$y=1$ 时，如果 $h_\theta$ = 0, 即代价cost趋于无穷，说明y = 1的概率为0，并且如果两个值不相同的时候代价十分大，相反地，如果的话，即代价cost趋于0， 说明y = 1的概率为1。</p>
+<p>当$y=0$ 的时候，与$y=1$ 的时候的道理相同。</p>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4/images/2020/machine-learning/image-20201106234601225.png" alt="image-20201106234601225" style="zoom:50%;" />
+
+
+
+<p>为了简化代价函数可以将其化简（这里与最大似然法①有关）为</p>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4//images/2020/machine-learning/image-20201106235415230.png" alt="image-20201106235415230" style="zoom:50%;" />
+
+<img src= "/img/loading.gif" data-src="C:/Users/Liu%20Xinzhu/AppData/Roaming/Typora/typora-user-images/image-20201106235438755.png" alt="image-20201106235438755" style="zoom:50%;" />
+
+<p>为了最小化，采用梯度下降法</p>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4//images/2020/machine-learning/image-20201107000327223.png" alt="image-20201107000327223" style="zoom:50%;" />
+
+<h4 id="多元分类（one-versus-all-classification）"><a href="#多元分类（one-versus-all-classification）" class="headerlink" title="多元分类（one-versus-all classification）"></a>多元分类（one-versus-all classification）</h4><p>多分类问题可以将多个类别分成多个二分类问题来处理，有几类就分几个二分类 </p>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4/images/2020/machine-learning/image-20201107121403439.png" alt="image-20201107121403439" style="zoom:67%;" />
+
+<blockquote>
+<p>① 最大似然法</p>
+</blockquote>
+
+             
+          </div>
+      </div>
+      <div class="post-footer">
+        
+    </div>
+    
+      <div class="recent-post-item">
+          <div class="post-title ">
             <a href="/2020/11/07/machine-learning-7/">machine-learning-7</a>
           </div>
           <div class="post-meta">
@@ -210,7 +303,7 @@
                 <span title="Created 2020.11.07"><i class="far fa-calendar-alt"></i> 2020.11.07</span>
               </div>
               <div class="post-meta-item updated">
-                <span title="Updated 2020.11.09"><i class="far fa-calendar-check"></i> 2020.11.09</span>
+                <span title="Updated 2020.11.10"><i class="far fa-calendar-check"></i> 2020.11.10</span>
               </div>
              
             
@@ -259,20 +352,21 @@
 </li>
 </ol>
 <h4 id="线性回归的正则化"><a href="#线性回归的正则化" class="headerlink" title="线性回归的正则化"></a>线性回归的正则化</h4><ol>
-<li><strong>梯度下降（带正则化的）</strong></li>
-</ol>
-<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4/images/2020/machine-learning/image-20201109175856748.png" alt="image-20201109175856748" style="zoom: 67%;" />
+<li><p>**梯度下降（带正则化的）</p>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4.1//images/2020/machine-learning/image-20201109175856748.png" alt="image-20201109175856748" style="zoom:50%;" />
 
-<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4/images/2020/machine-learning/image-20201109175915769.png" alt="image-20201109175915769" style="zoom:67%;" />
+</li>
+</ol>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn//images/2020/machine-learning/image-20201109175915769.png" alt="image-20201109175915769" style="zoom:50%;" />
 
 <ol start="2">
 <li><p><strong>Normal euqation(正规方程)</strong></p>
-<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4/images/2020/machine-learning/image-20201109180043363.png" alt="image-20201109180043363" style="zoom:67%;" />
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4.1/images/2020/machine-learning/image-20201109180043363.png" alt="image-20201109180043363" style="zoom:67%;" />
 
 <p>在正则化项的帮助下，正规方程的方法中奇异矩阵的情况会得到改善，因为正则化项的矩阵是(n + 1) × (n + 1)的，所以这个确保了它的你矩阵是存在的。</p>
 </li>
 </ol>
-<h4 id="逻辑回归的正则化"><a href="#逻辑回归的正则化" class="headerlink" title="逻辑回归的正则化"></a>逻辑回归的正则化</h4><p><img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4/images/2020/machine-learning/image-20201109181524598.png" alt="image-20201109181524598"></p>
+<h4 id="逻辑回归的正则化"><a href="#逻辑回归的正则化" class="headerlink" title="逻辑回归的正则化"></a>逻辑回归的正则化</h4><p><img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4.1/images/2020/machine-learning/image-20201109181524598.png" alt="image-20201109181524598"></p>
 
              
           </div>
