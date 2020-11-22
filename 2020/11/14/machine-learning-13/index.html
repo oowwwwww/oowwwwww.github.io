@@ -22,7 +22,7 @@
 
   
 
-  <title>categories | A Blog</title>
+  <title>machine-learning-13 | A Blog</title>
 
   
 
@@ -196,21 +196,151 @@
 </header>
 
     
-<article class="post-wrap page">
-    <h1 class="pagetitle">categories</h1>
-    <section class="content">
+<article id="post">
+  <div class="post-title">machine-learning-13</div>
+  
+<div class="post-meta">
+    
+    
+      <div class="post-meta-item date">
+        <span title="Created 2020.11.14"><i class="far fa-calendar-alt"></i> 2020.11.14</span>
+      </div>
+      <div class="post-meta-item updated">
+        <span title="Updated 2020.11.22"><i class="far fa-calendar-check"></i> 2020.11.22</span>
+      </div>
+     
+    
+      <div class="post-meta-item categories">
         
-            <div class="category">
-    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><span class="category-list-count">18</span></li></ul>
+          <i class="fas fa-inbox article-meta__icon"></i> <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+        
+      </div>
+     
+    
+     <div class="post-meta-item wordcount">
+        
+          <i class="fas fa-pencil-alt"></i> <span class="post-count">331 words</span>
+           
+        
+          <i class="far fa-clock"></i> <span class="post-count">1 min</span>
+                               
+      </div>
+     
+</div>
+
+
+  
+  <div class="content">
+        <div><h4 id="K-Means算法"><a href="#K-Means算法" class="headerlink" title="K-Means算法"></a>K-Means算法</h4><p>​                                                                                                <strong>k-means算法计算过程</strong></p>
+<p><img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.5//images/2020/machine-learning/image-20201114172049894.png" alt="image-20201114172049894" style="zoom: 25%;" /><img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.5//images/2020/machine-learning/image-20201114173040879.png" alt="image-20201114173040879" style="zoom:25%;" /><img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.5//images/2020/machine-learning/image-20201114173117336.png" alt="image-20201114173117336" style="zoom:25%;" /><img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.5//images/2020/machine-learning/image-20201114173311417.png" alt="image-20201114173311417" style="zoom:25%;" />                          <img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.5//images/2020/machine-learning/image-20201114173117336.png" alt="image-20201114173117336" style="zoom:25%;" />       <img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.5//images/2020/machine-learning/image-20201114173311417.png" alt="image-20201114173311417" style="zoom:25%;" /></p>
+<p>首先选择k个聚类中心，然后遍历所有的数据，与距离自己最近的聚类中心为一类，然后再对每一类中所有的数据取均值，更新每一个聚类中心的位置，再一次的遍历所有的数据，知道聚类中心的位置不不变为止。</p>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.5//images/2020/machine-learning/image-20201114173444719.png" alt="image-20201114173444719" style="zoom:67%;" />
+
+<h5 id="k-means-算法的输入："><a href="#k-means-算法的输入：" class="headerlink" title="k-means 算法的输入："></a>k-means 算法的输入：</h5><ul>
+<li>K：聚类的个数</li>
+<li>训练集</li>
+</ul>
+<h5 id="k-means算法需要跟踪的两组变量："><a href="#k-means算法需要跟踪的两组变量：" class="headerlink" title="k-means算法需要跟踪的两组变量："></a>k-means算法需要跟踪的两组变量：</h5><ul>
+<li>$c^{(i)}$：当前样本所属簇的序号。</li>
+<li>$\mu_k$：第k个聚类中心的位置。</li>
+<li>$\mu_{c^{(i)}}$：$x^{(i)}$所属的那个簇的聚类中心。</li>
+</ul>
+<h5 id="k-means算法的优化目标："><a href="#k-means算法的优化目标：" class="headerlink" title="k-means算法的优化目标："></a>k-means算法的优化目标：</h5><img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.5//images/2020/machine-learning/image-20201115001257887.png" alt="image-20201115001257887" style="zoom:50%;" />
+
+<p>就是要找到与每一个数据距离最近的聚类中心点。</p>
+<h5 id="随机初始化："><a href="#随机初始化：" class="headerlink" title="随机初始化："></a>随机初始化：</h5><ul>
+<li>k个聚类中心需要随机初始化，k需要小于m(数据个数)。</li>
+<li>当k在2~10之间的时候，多次初始化可以找到较好的局部最优解；当k比较大的时候，多次随机初始化也不会有太大改善。</li>
+</ul>
+<h5 id="选取聚类的数量："><a href="#选取聚类的数量：" class="headerlink" title="选取聚类的数量："></a>选取聚类的数量：</h5><p>一般是手动选取聚类的数量。可以根据不同的k值画出关于损失函数的曲线，其中曲线的拐点对应的k值就是k值的最佳值。</p>
+</div>
+        
+          <div class="post-copyright">
+                  <div class="copyright-item">
+                      <span> Author: Aurora</span>
+                  </div>
+                  <div class="copyright-item">
+                      <span> Link: <a href="https://oowwwwww.github.io/2020/11/14/machine-learning-13/">https://oowwwwww.github.io/2020/11/14/machine-learning-13/</a></span>
+                  </div>
+                  <div class="copyright-item">
+                      <span> License: 本博客所有文章除特别声明外，均采用许可协议 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> 转载请注明出处！</span>
+                  </div>
+          </div>
+        
+  </div>
+
+  <div class="share-reward">
+    <div class="share">
+        
+<div class="social-share" data-sites="facebook,twitter,wechat,weibo,qq"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script>
+
+
+      </div>
+        <div class="reward">
+          
+  <div style="padding: 10px 0; margin-left: 20px; width: 90%; text-align: center;">
+    <div class="reward-content">
+        <ul id="donateBox" class="list pos-a">
+          
+           <li id="PayPal"><a href="https://paypal.me" target="_blank" title="PayPal">PayPal</a></li>
+            
+          
+            <li id="AliPay" title="Alipay"><img data-img="/img/alipay.jpg" onerror=this.onerror=null,this.src="/img/loading.gif"></img></li>
+               
+                 
+            <li id="WeChat" title="Wechatpay"><img date-img="/img/wechat.jpg" onerror=this.onerror=null,this.src="/img/loading.gif"></img></li>
+                      
+          </ul>
+        <div id="QRBox" class="pos-f left-100">
+          <div id="MainBox"></div>
+        </div>
+    </div>
   </div>
   
-        
-     </section>
-        
+        </div>
+    </div>
+    
+    <div class="post_tags">
+      
+        <i class="fas fa-tag"></i> <a href="/tags/machine-learning/" class="tag">machine learning</a>
+      
+    </div>
+    <div class="post-nav">
+      
+        <div class="post-nav-prev post-nav-item">
+            <a href="/2020/11/17/machine-learning-ex3/" >machine-learning-ex3<i class="fa fa-chevron-left"></i></a>
+        </div>
+      
+      
+        <div class="post-nav-next post-nav-item">
+            <a href="/2020/11/13/machine-learning-12/" >machine-learning-12<i class="fa fa-chevron-right"></i></a>
+        </div>
+      
+    </div>
+      
+    <div id="valine"></div>
+    <script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script>
+    <script>
+          new Valine({
+            el: '#valine',
+            appId: "",
+            appKey: "",
+            avatar: "mm",
+            lang: "",
+            meta: 'nick,mail,link'.split(','),
+            requiredFields: 'nick,mail'.split(','),
+            placeholder: "评论记得带上邮箱,你的留言我会马上收到邮箱提醒哒",
+            pageSize:'10',
+            recordIP: 'false',
+            serverURLs: "",
+            emojiCDN: "",
+            enableQQ: "true",
+          });
+    </script>
+    
 </article>
-
-
-
 
     
 <a id="gotop" href="javascript:" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
@@ -341,6 +471,45 @@ if (document.getElementsByClassName('mermaid').length) {
   
 
 
+  <script>
+    jQuery(document).ready(function () {
+      var QRBox = $('#QRBox');
+      var MainBox = $('#MainBox');
+      var AliPayQR = '/img/alipay.jpg';
+      var WeChanQR = '/img/wechat.jpg';
+
+      function showQR(QR) {
+        if (QR) {
+          MainBox.css('background-image', 'url(' + QR + ')');
+        }
+        $('#donateBox').addClass('blur');
+        QRBox.fadeIn(300, function (argument) {
+          MainBox.addClass('showQR');
+        });
+      }
+
+      $('#donateBox>li').click(function (event) {
+        var thisID = $(this).attr('id');
+        if (thisID === 'AliPay') {
+          showQR(AliPayQR);
+        } else if (thisID === 'WeChat') {
+          showQR(WeChanQR);
+        }
+      });
+
+      MainBox.click(function (event) {
+        MainBox.removeClass('showQR').addClass('hideQR');
+        setTimeout(function (a) {
+          QRBox.fadeOut(300, function (argument) {
+            MainBox.removeClass('hideQR');
+          });
+          $('#DonateText,#donateBox,#github').removeClass('blur');
+        }, 600);
+
+      });
+    });
+  </script>
+  
 
 
 

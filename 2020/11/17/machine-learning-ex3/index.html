@@ -22,7 +22,7 @@
 
   
 
-  <title>categories | A Blog</title>
+  <title>machine-learning-ex3 | A Blog</title>
 
   
 
@@ -196,21 +196,137 @@
 </header>
 
     
-<article class="post-wrap page">
-    <h1 class="pagetitle">categories</h1>
-    <section class="content">
+<article id="post">
+  <div class="post-title">machine-learning-ex3</div>
+  
+<div class="post-meta">
+    
+    
+      <div class="post-meta-item date">
+        <span title="Created 2020.11.17"><i class="far fa-calendar-alt"></i> 2020.11.17</span>
+      </div>
+      <div class="post-meta-item updated">
+        <span title="Updated 2020.11.17"><i class="far fa-calendar-check"></i> 2020.11.17</span>
+      </div>
+     
+    
+      <div class="post-meta-item categories">
         
-            <div class="category">
-    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><span class="category-list-count">18</span></li></ul>
+          <i class="fas fa-inbox article-meta__icon"></i> <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+        
+      </div>
+     
+    
+     <div class="post-meta-item wordcount">
+        
+          <i class="fas fa-pencil-alt"></i> <span class="post-count">158 words</span>
+           
+        
+          <i class="far fa-clock"></i> <span class="post-count">1 min</span>
+                               
+      </div>
+     
+</div>
+
+
+  
+  <div class="content">
+        <div><h3 id="ex3：多类别逻辑回归、神经网络"><a href="#ex3：多类别逻辑回归、神经网络" class="headerlink" title="ex3：多类别逻辑回归、神经网络"></a>ex3：多类别逻辑回归、神经网络</h3><p>由于在实验中遇到了一些问题，特此记录。</p>
+<h4 id="矩阵乘法"><a href="#矩阵乘法" class="headerlink" title="矩阵乘法"></a>矩阵乘法</h4><p>对于代价函数：<img src= "/img/loading.gif" data-src="C:%5CUsers%5CLiu%20Xinzhu%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201117114142599.png" alt="image-20201117114142599" style="zoom:67%;" /></p>
+<p>用函数可以写成：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cost</span>(<span class="params">theta, X, y</span>):</span></span><br><span class="line">    <span class="keyword">return</span> np.mean(-y * np.log(sigmoid(X @ theta)) - (<span class="number">1</span> - y) * np.log(<span class="number">1</span> - sigmoid(X @ theta)))</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">costRef</span>(<span class="params">theta, X, y, learningRate</span>):</span></span><br><span class="line">	theta_j1_to_n = theta[<span class="number">1</span>:]</span><br><span class="line">    regularized_term = (<span class="number">1</span> / (<span class="number">2</span> * <span class="built_in">len</span>(x))) * np.power(theta_j1_to_n, <span class="number">2</span>).<span class="built_in">sum</span>()</span><br><span class="line">    <span class="keyword">return</span> cost(theta, X, y) + regularized_term</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cost</span>(<span class="params">theta, X, y, learningRate</span>):</span></span><br><span class="line">	theta, X, y = np.matrix(theta), np.matrix(X), np.matrix(y)</span><br><span class="line">    first = np.multiply(-y, np.log(sigmoid(X * theta.T)))</span><br><span class="line">    second = np.multiply(<span class="number">1</span> - y, np.log(<span class="number">1</span> - sigmoid(X * theta.T)))</span><br><span class="line">    reg = (learningRate / (<span class="number">2</span> * <span class="built_in">len</span>(X))) * np.<span class="built_in">sum</span>(np.power(theta[:, <span class="number">1</span>:theta.shape[<span class="number">1</span>]], <span class="number">2</span>))</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> np.<span class="built_in">sum</span>(first - second) / <span class="built_in">len</span>(X) + reg</span><br></pre></td></tr></table></figure>
+
+</div>
+        
+          <div class="post-copyright">
+                  <div class="copyright-item">
+                      <span> Author: Aurora</span>
+                  </div>
+                  <div class="copyright-item">
+                      <span> Link: <a href="https://oowwwwww.github.io/2020/11/17/machine-learning-ex3/">https://oowwwwww.github.io/2020/11/17/machine-learning-ex3/</a></span>
+                  </div>
+                  <div class="copyright-item">
+                      <span> License: 本博客所有文章除特别声明外，均采用许可协议 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> 转载请注明出处！</span>
+                  </div>
+          </div>
+        
+  </div>
+
+  <div class="share-reward">
+    <div class="share">
+        
+<div class="social-share" data-sites="facebook,twitter,wechat,weibo,qq"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script>
+
+
+      </div>
+        <div class="reward">
+          
+  <div style="padding: 10px 0; margin-left: 20px; width: 90%; text-align: center;">
+    <div class="reward-content">
+        <ul id="donateBox" class="list pos-a">
+          
+           <li id="PayPal"><a href="https://paypal.me" target="_blank" title="PayPal">PayPal</a></li>
+            
+          
+            <li id="AliPay" title="Alipay"><img data-img="/img/alipay.jpg" onerror=this.onerror=null,this.src="/img/loading.gif"></img></li>
+               
+                 
+            <li id="WeChat" title="Wechatpay"><img date-img="/img/wechat.jpg" onerror=this.onerror=null,this.src="/img/loading.gif"></img></li>
+                      
+          </ul>
+        <div id="QRBox" class="pos-f left-100">
+          <div id="MainBox"></div>
+        </div>
+    </div>
   </div>
   
-        
-     </section>
-        
+        </div>
+    </div>
+    
+    <div class="post_tags">
+      
+        <i class="fas fa-tag"></i> <a href="/tags/machine-learning/" class="tag">machine learning</a>
+      
+    </div>
+    <div class="post-nav">
+      
+        <div class="post-nav-prev post-nav-item">
+            <a href="/2020/11/18/machine-learning-14/" >machine-learning-14<i class="fa fa-chevron-left"></i></a>
+        </div>
+      
+      
+        <div class="post-nav-next post-nav-item">
+            <a href="/2020/11/14/machine-learning-13/" >machine-learning-13<i class="fa fa-chevron-right"></i></a>
+        </div>
+      
+    </div>
+      
+    <div id="valine"></div>
+    <script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script>
+    <script>
+          new Valine({
+            el: '#valine',
+            appId: "",
+            appKey: "",
+            avatar: "mm",
+            lang: "",
+            meta: 'nick,mail,link'.split(','),
+            requiredFields: 'nick,mail'.split(','),
+            placeholder: "评论记得带上邮箱,你的留言我会马上收到邮箱提醒哒",
+            pageSize:'10',
+            recordIP: 'false',
+            serverURLs: "",
+            emojiCDN: "",
+            enableQQ: "true",
+          });
+    </script>
+    
 </article>
-
-
-
 
     
 <a id="gotop" href="javascript:" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
@@ -341,6 +457,45 @@ if (document.getElementsByClassName('mermaid').length) {
   
 
 
+  <script>
+    jQuery(document).ready(function () {
+      var QRBox = $('#QRBox');
+      var MainBox = $('#MainBox');
+      var AliPayQR = '/img/alipay.jpg';
+      var WeChanQR = '/img/wechat.jpg';
+
+      function showQR(QR) {
+        if (QR) {
+          MainBox.css('background-image', 'url(' + QR + ')');
+        }
+        $('#donateBox').addClass('blur');
+        QRBox.fadeIn(300, function (argument) {
+          MainBox.addClass('showQR');
+        });
+      }
+
+      $('#donateBox>li').click(function (event) {
+        var thisID = $(this).attr('id');
+        if (thisID === 'AliPay') {
+          showQR(AliPayQR);
+        } else if (thisID === 'WeChat') {
+          showQR(WeChanQR);
+        }
+      });
+
+      MainBox.click(function (event) {
+        MainBox.removeClass('showQR').addClass('hideQR');
+        setTimeout(function (a) {
+          QRBox.fadeOut(300, function (argument) {
+            MainBox.removeClass('hideQR');
+          });
+          $('#DonateText,#donateBox,#github').removeClass('blur');
+        }, 600);
+
+      });
+    });
+  </script>
+  
 
 
 

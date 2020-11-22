@@ -22,7 +22,7 @@
 
   
 
-  <title>categories | A Blog</title>
+  <title>machine-learning-14 | A Blog</title>
 
   
 
@@ -196,21 +196,168 @@
 </header>
 
     
-<article class="post-wrap page">
-    <h1 class="pagetitle">categories</h1>
-    <section class="content">
+<article id="post">
+  <div class="post-title">machine-learning-14</div>
+  
+<div class="post-meta">
+    
+    
+      <div class="post-meta-item date">
+        <span title="Created 2020.11.18"><i class="far fa-calendar-alt"></i> 2020.11.18</span>
+      </div>
+      <div class="post-meta-item updated">
+        <span title="Updated 2020.11.22"><i class="far fa-calendar-check"></i> 2020.11.22</span>
+      </div>
+     
+    
+      <div class="post-meta-item categories">
         
-            <div class="category">
-    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><span class="category-list-count">18</span></li></ul>
+          <i class="fas fa-inbox article-meta__icon"></i> <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+        
+      </div>
+     
+    
+     <div class="post-meta-item wordcount">
+        
+          <i class="fas fa-pencil-alt"></i> <span class="post-count">622 words</span>
+           
+        
+          <i class="far fa-clock"></i> <span class="post-count">2 min</span>
+                               
+      </div>
+     
+</div>
+
+
+  
+  <div class="content">
+        <div><h4 id="降维"><a href="#降维" class="headerlink" title="降维"></a>降维</h4><p>降维的作用：</p>
+<ol>
+<li>数据压缩</li>
+<li>可视化</li>
+</ol>
+<h4 id="主成分分析法（PCA）算法"><a href="#主成分分析法（PCA）算法" class="headerlink" title="主成分分析法（PCA）算法"></a>主成分分析法（PCA）算法</h4><p>主成分分析（PCA）是最常见的降维算法。在PCA中，需要找到一个方向向量（<strong>Vector direction</strong>），当把所有的数据都投射到该向量上时，希望投射平均均方误差能尽可能地小。方向向量是一个经过原点的向量，而投射误差是从特征向量向该方向向量作垂线的长度。</p>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.5//images/2020/machine-learning/image-20201118135821372.png" alt="image-20201118135821372" style="zoom:67%;" />
+
+<h5 id="主成分分析法和线性回归之间的区别："><a href="#主成分分析法和线性回归之间的区别：" class="headerlink" title="主成分分析法和线性回归之间的区别："></a>主成分分析法和线性回归之间的区别：</h5><p>线性回归是找到能够拟合多个点的一条直线，这个直线使得样本点到直线的点的距离平方和最小（如左图所示），而主成分分析法是缩小直线与各个点之间的正交距离。在线性回归中是为了让直线来预测x对应的y值，而主成分分析法中没有这个变量y。</p>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.5//images/2020/machine-learning/image-20201118145902004.png" alt="image-20201118145902004" style="zoom:80%;" />
+
+<h5 id="主成分分析算法的过程："><a href="#主成分分析算法的过程：" class="headerlink" title="主成分分析算法的过程："></a>主成分分析算法的过程：</h5><ol>
+<li><p>数据预处理：</p>
+<p>首先要对数据进行归一化处理：</p>
+<p><img src= "/img/loading.gif" data-src="C:%5CUsers%5CLiu%20Xinzhu%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201118152712545.png" alt="image-20201118152712545" style="zoom:67%;" />，用$x_j - \mu_j$代替$x_j$，<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.5//images/2020/machine-learning/image-20201118152929263.png" alt="image-20201118152929263" style="zoom:67%;" />，其中$s_j$是标准差</p>
+</li>
+<li><p>为了将n维的数据降到k维，需要计算协方差：</p>
+<ul>
+<li><p><strong>协方差（covariance matrix）</strong>：<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.5//images/2020/machine-learning/image-20201118154243251.png" alt="image-20201118154243251" style="zoom:80%;" />(其中，$x^{(i)}$的维度是（n, 1)， 那么$\Sigma$的维度就是（n, n)）</p>
+</li>
+<li><p>矩阵$\Sigma$(Sigma)的<strong>特征向量（eigenvector）</strong>：$[U, S, V] = svd(\Sigma)$</p>
+<ul>
+<li>其中U， S， V是三个矩阵。</li>
+<li>U矩阵的维度是（n, n)，取U矩阵的前k列作为K个方向即想投影的方向， 然后将U矩阵的转置（维度为（k, n)）和$x$矩阵（维度为(n, 1))相乘得到了Z矩阵（维度为（k, 1))，即得到了新的<u>k维坐标</u>（<u><strong>理解的降维就是将大维度变成小维度，得到了新的坐标</strong></u>）</li>
+</ul>
+</li>
+</ul>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.5//images/2020/machine-learning/image-20201118155734199.png" alt="image-20201118155734199" style="zoom:67%;" />
+
+<p>注：svd代表<strong>奇异值分解</strong>。</p>
+</li>
+</ol>
+<h5 id="从低维还原到高维的方法（原始数据的重构）："><a href="#从低维还原到高维的方法（原始数据的重构）：" class="headerlink" title="从低维还原到高维的方法（原始数据的重构）："></a>从低维还原到高维的方法（原始数据的重构）：</h5><p>通过上述可知主成分分析方法的公式为：$z = U^T_{reduce}x$，</p>
+<p>那么，从低维还原到高维的公式就应为：$x_{approx} = U_{reduce}\times z$（其中$x_{approx}\approx x$)</p>
+<p>注意，得到的是x的近似值，说明会丢失一部分信息（<u>法向的信息会丢失</u>）</p>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.5//images/2020/machine-learning/image-20201118181025374.png" alt="image-20201118181025374" style="zoom:80%;" />
+
+<h4 id="主成分分析法的应用："><a href="#主成分分析法的应用：" class="headerlink" title="主成分分析法的应用："></a>主成分分析法的应用：</h4><p>举例：有一个监督学习的数据集$(x^{(1)}, y^{(1)}),(x^{(2)}, y^{(2)}),…,(x^{(m)}, y^{(m)})$，其中x是的维度是10000，通过使用PCA使其到1000维，使其：<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.5//images/2020/machine-learning/image-20201118183855051.png" alt="image-20201118183855051" style="zoom:80%;" /></p>
+<p>然后训练$h_\theta$函数，会加快训练速度。</p>
+</div>
+        
+          <div class="post-copyright">
+                  <div class="copyright-item">
+                      <span> Author: Aurora</span>
+                  </div>
+                  <div class="copyright-item">
+                      <span> Link: <a href="https://oowwwwww.github.io/2020/11/18/machine-learning-14/">https://oowwwwww.github.io/2020/11/18/machine-learning-14/</a></span>
+                  </div>
+                  <div class="copyright-item">
+                      <span> License: 本博客所有文章除特别声明外，均采用许可协议 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> 转载请注明出处！</span>
+                  </div>
+          </div>
+        
+  </div>
+
+  <div class="share-reward">
+    <div class="share">
+        
+<div class="social-share" data-sites="facebook,twitter,wechat,weibo,qq"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script>
+
+
+      </div>
+        <div class="reward">
+          
+  <div style="padding: 10px 0; margin-left: 20px; width: 90%; text-align: center;">
+    <div class="reward-content">
+        <ul id="donateBox" class="list pos-a">
+          
+           <li id="PayPal"><a href="https://paypal.me" target="_blank" title="PayPal">PayPal</a></li>
+            
+          
+            <li id="AliPay" title="Alipay"><img data-img="/img/alipay.jpg" onerror=this.onerror=null,this.src="/img/loading.gif"></img></li>
+               
+                 
+            <li id="WeChat" title="Wechatpay"><img date-img="/img/wechat.jpg" onerror=this.onerror=null,this.src="/img/loading.gif"></img></li>
+                      
+          </ul>
+        <div id="QRBox" class="pos-f left-100">
+          <div id="MainBox"></div>
+        </div>
+    </div>
   </div>
   
-        
-     </section>
-        
+        </div>
+    </div>
+    
+    <div class="post_tags">
+      
+        <i class="fas fa-tag"></i> <a href="/tags/machine-learning/" class="tag">machine learning</a>
+      
+    </div>
+    <div class="post-nav">
+      
+        <div class="post-nav-prev post-nav-item">
+            <a href="/2020/11/18/machine-learning-15/" >machine-learning-15<i class="fa fa-chevron-left"></i></a>
+        </div>
+      
+      
+        <div class="post-nav-next post-nav-item">
+            <a href="/2020/11/17/machine-learning-ex3/" >machine-learning-ex3<i class="fa fa-chevron-right"></i></a>
+        </div>
+      
+    </div>
+      
+    <div id="valine"></div>
+    <script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script>
+    <script>
+          new Valine({
+            el: '#valine',
+            appId: "",
+            appKey: "",
+            avatar: "mm",
+            lang: "",
+            meta: 'nick,mail,link'.split(','),
+            requiredFields: 'nick,mail'.split(','),
+            placeholder: "评论记得带上邮箱,你的留言我会马上收到邮箱提醒哒",
+            pageSize:'10',
+            recordIP: 'false',
+            serverURLs: "",
+            emojiCDN: "",
+            enableQQ: "true",
+          });
+    </script>
+    
 </article>
-
-
-
 
     
 <a id="gotop" href="javascript:" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
@@ -341,6 +488,45 @@ if (document.getElementsByClassName('mermaid').length) {
   
 
 
+  <script>
+    jQuery(document).ready(function () {
+      var QRBox = $('#QRBox');
+      var MainBox = $('#MainBox');
+      var AliPayQR = '/img/alipay.jpg';
+      var WeChanQR = '/img/wechat.jpg';
+
+      function showQR(QR) {
+        if (QR) {
+          MainBox.css('background-image', 'url(' + QR + ')');
+        }
+        $('#donateBox').addClass('blur');
+        QRBox.fadeIn(300, function (argument) {
+          MainBox.addClass('showQR');
+        });
+      }
+
+      $('#donateBox>li').click(function (event) {
+        var thisID = $(this).attr('id');
+        if (thisID === 'AliPay') {
+          showQR(AliPayQR);
+        } else if (thisID === 'WeChat') {
+          showQR(WeChanQR);
+        }
+      });
+
+      MainBox.click(function (event) {
+        MainBox.removeClass('showQR').addClass('hideQR');
+        setTimeout(function (a) {
+          QRBox.fadeOut(300, function (argument) {
+            MainBox.removeClass('hideQR');
+          });
+          $('#DonateText,#donateBox,#github').removeClass('blur');
+        }, 600);
+
+      });
+    });
+  </script>
+  
 
 
 

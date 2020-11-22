@@ -22,7 +22,7 @@
 
   
 
-  <title>categories | A Blog</title>
+  <title>machine-learning-10 | A Blog</title>
 
   
 
@@ -196,21 +196,169 @@
 </header>
 
     
-<article class="post-wrap page">
-    <h1 class="pagetitle">categories</h1>
-    <section class="content">
+<article id="post">
+  <div class="post-title">machine-learning-10</div>
+  
+<div class="post-meta">
+    
+    
+      <div class="post-meta-item date">
+        <span title="Created 2020.11.12"><i class="far fa-calendar-alt"></i> 2020.11.12</span>
+      </div>
+      <div class="post-meta-item updated">
+        <span title="Updated 2020.11.13"><i class="far fa-calendar-check"></i> 2020.11.13</span>
+      </div>
+     
+    
+      <div class="post-meta-item categories">
         
-            <div class="category">
-    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><span class="category-list-count">18</span></li></ul>
+          <i class="fas fa-inbox article-meta__icon"></i> <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+        
+      </div>
+     
+    
+     <div class="post-meta-item wordcount">
+        
+          <i class="fas fa-pencil-alt"></i> <span class="post-count">758 words</span>
+           
+        
+          <i class="far fa-clock"></i> <span class="post-count">2 min</span>
+                               
+      </div>
+     
+</div>
+
+
+  
+  <div class="content">
+        <div><h4 id="诊断方差和偏差"><a href="#诊断方差和偏差" class="headerlink" title="诊断方差和偏差"></a>诊断方差和偏差</h4><p>当d较小时，例如当d = 1时，对应的是很简单的函数，最终会导致欠拟合；当d较大时，例如当d = 4时，对应的函数较为赋值，最终会导致过拟合。这两种情况都会导致在验证集（或者测试集）上得到较高的错误率。</p>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn//images/2020/machine-learning/image-20201112152359618.png" alt="image-20201112152359618" style="zoom:67%;" />
+
+<p>当$J_{cv}(\theta)$或者$J_{test}(\theta)$很大时，需要判断到底是高偏差还是高方差的问题，高偏差对应的是欠拟合问题，高方差对应的是过拟合问题：</p>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn//images/2020/machine-learning/image-20201112152905069.png" alt="image-20201112152905069" style="zoom:67%;" />
+
+<p>如图所示，可以看出：当高偏差时，训练集和验证集的误差都很高；当高方差时，训练集的误差很低，验证机的误差很高。</p>
+<h4 id="学习曲线"><a href="#学习曲线" class="headerlink" title="学习曲线"></a>学习曲线</h4><ol>
+<li>当只有很少数据的时候（例如m = 1, m = 2, m = 3），在训练集上的误差会很小，但是由于数据很少，训练得到的模型的泛化能力就很很弱，对于其交叉验证集上的误差就会偏大；随着数据的增多，在训练集上的误差会逐渐增大，模型的拟合能力也会越来越好，在交叉验证集上的误差也会越来越小。</li>
+</ol>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn//images/2020/machine-learning/image-20201113083833925.png" alt="image-20201113083833925" style="zoom:67%;" />
+
+<ol start="2">
+<li><p>当在高偏差的情况下，即欠拟合，由于欠拟合，模型相对简单，随着数据的增多，无法很好的拟合所有数据，在训练集上的误差也会逐渐增大；在交叉验证集上的误差会随着数据集的增多逐渐变小，然后趋近训练集的误差。所以可以得出，在高偏差的情况下，无法通过增加数据集来降低错误率。</p>
+<img src= "/img/loading.gif" data-src="C:%5CUsers%5CLiu%20Xinzhu%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201113084140735.png" alt="image-20201113084140735" style="zoom:67%;" />
+</li>
+<li><p>当在高方差的情况下，即过拟合，由于过拟合，模型相对复杂，在训练集上拟合的效果会很好，但是随着数据的增多，在训练集上的误差也会逐渐增大；由于数据集较少，在验证集上的错误率会比较高，随着数据集的增多，在验证机上的错误率会逐渐降低。</p>
+<img src= "/img/loading.gif" data-src="C:%5CUsers%5CLiu%20Xinzhu%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201113084618641.png" alt="image-20201113084618641" style="zoom:67%;" />
+</li>
+</ol>
+<ul>
+<li>修正高方差的方法：<ol>
+<li>获得更多的训练样本</li>
+<li>使用更小的特征</li>
+<li>增加正则化参数$\lambda$</li>
+</ol>
+</li>
+<li>修正高偏差的方法：<ol>
+<li>使用更多的特征</li>
+<li>增加多项式的特征</li>
+<li>减少正则化参数$\lambda$</li>
+</ol>
+</li>
+</ul>
+<img src= "/img/loading.gif" data-src="C:%5CUsers%5CLiu%20Xinzhu%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201113085912572.png" alt="image-20201113085912572" style="zoom:80%;" />
+
+<p>对于只有一层隐藏层且单元数很少的网络，优点就是需要的计算量不是很大，需要的参数也较少，但是就是很容易欠拟合。</p>
+<img src= "/img/loading.gif" data-src="C:%5CUsers%5CLiu%20Xinzhu%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201113090436124.png" alt="image-20201113090436124" style="zoom:80%;" />
+
+<p>当只有一层隐藏层且其单元数很多，或者有多层隐藏层时，会使用更多的参数，也更容易过拟合，并且需要更大的计算量。这种大型的神经网络最主要的就是其更容易出现过拟合现象，越大型的网络性能越好，过拟合现象可以使用正则化的方法来修正，就是计算量比较大。</p>
+<img src= "/img/loading.gif" data-src="C:%5CUsers%5CLiu%20Xinzhu%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201113091506134.png" alt="image-20201113091506134" style="zoom:80%;" /></div>
+        
+          <div class="post-copyright">
+                  <div class="copyright-item">
+                      <span> Author: Aurora</span>
+                  </div>
+                  <div class="copyright-item">
+                      <span> Link: <a href="https://oowwwwww.github.io/2020/11/12/machine-learning-10/">https://oowwwwww.github.io/2020/11/12/machine-learning-10/</a></span>
+                  </div>
+                  <div class="copyright-item">
+                      <span> License: 本博客所有文章除特别声明外，均采用许可协议 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> 转载请注明出处！</span>
+                  </div>
+          </div>
+        
+  </div>
+
+  <div class="share-reward">
+    <div class="share">
+        
+<div class="social-share" data-sites="facebook,twitter,wechat,weibo,qq"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script>
+
+
+      </div>
+        <div class="reward">
+          
+  <div style="padding: 10px 0; margin-left: 20px; width: 90%; text-align: center;">
+    <div class="reward-content">
+        <ul id="donateBox" class="list pos-a">
+          
+           <li id="PayPal"><a href="https://paypal.me" target="_blank" title="PayPal">PayPal</a></li>
+            
+          
+            <li id="AliPay" title="Alipay"><img data-img="/img/alipay.jpg" onerror=this.onerror=null,this.src="/img/loading.gif"></img></li>
+               
+                 
+            <li id="WeChat" title="Wechatpay"><img date-img="/img/wechat.jpg" onerror=this.onerror=null,this.src="/img/loading.gif"></img></li>
+                      
+          </ul>
+        <div id="QRBox" class="pos-f left-100">
+          <div id="MainBox"></div>
+        </div>
+    </div>
   </div>
   
-        
-     </section>
-        
+        </div>
+    </div>
+    
+    <div class="post_tags">
+      
+        <i class="fas fa-tag"></i> <a href="/tags/machine-learning/" class="tag">machine learning</a>
+      
+    </div>
+    <div class="post-nav">
+      
+        <div class="post-nav-prev post-nav-item">
+            <a href="/2020/11/13/machine-learning-11/" >machine-learning-11<i class="fa fa-chevron-left"></i></a>
+        </div>
+      
+      
+        <div class="post-nav-next post-nav-item">
+            <a href="/2020/11/11/machine-learning-9/" >machine-learning-9<i class="fa fa-chevron-right"></i></a>
+        </div>
+      
+    </div>
+      
+    <div id="valine"></div>
+    <script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script>
+    <script>
+          new Valine({
+            el: '#valine',
+            appId: "",
+            appKey: "",
+            avatar: "mm",
+            lang: "",
+            meta: 'nick,mail,link'.split(','),
+            requiredFields: 'nick,mail'.split(','),
+            placeholder: "评论记得带上邮箱,你的留言我会马上收到邮箱提醒哒",
+            pageSize:'10',
+            recordIP: 'false',
+            serverURLs: "",
+            emojiCDN: "",
+            enableQQ: "true",
+          });
+    </script>
+    
 </article>
-
-
-
 
     
 <a id="gotop" href="javascript:" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
@@ -341,6 +489,45 @@ if (document.getElementsByClassName('mermaid').length) {
   
 
 
+  <script>
+    jQuery(document).ready(function () {
+      var QRBox = $('#QRBox');
+      var MainBox = $('#MainBox');
+      var AliPayQR = '/img/alipay.jpg';
+      var WeChanQR = '/img/wechat.jpg';
+
+      function showQR(QR) {
+        if (QR) {
+          MainBox.css('background-image', 'url(' + QR + ')');
+        }
+        $('#donateBox').addClass('blur');
+        QRBox.fadeIn(300, function (argument) {
+          MainBox.addClass('showQR');
+        });
+      }
+
+      $('#donateBox>li').click(function (event) {
+        var thisID = $(this).attr('id');
+        if (thisID === 'AliPay') {
+          showQR(AliPayQR);
+        } else if (thisID === 'WeChat') {
+          showQR(WeChanQR);
+        }
+      });
+
+      MainBox.click(function (event) {
+        MainBox.removeClass('showQR').addClass('hideQR');
+        setTimeout(function (a) {
+          QRBox.fadeOut(300, function (argument) {
+            MainBox.removeClass('hideQR');
+          });
+          $('#DonateText,#donateBox,#github').removeClass('blur');
+        }, 600);
+
+      });
+    });
+  </script>
+  
 
 
 

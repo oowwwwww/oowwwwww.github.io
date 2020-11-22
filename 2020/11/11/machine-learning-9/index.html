@@ -22,7 +22,7 @@
 
   
 
-  <title>machine-learning-7 | A Blog</title>
+  <title>machine-learning-9 | A Blog</title>
 
   
 
@@ -197,16 +197,16 @@
 
     
 <article id="post">
-  <div class="post-title">machine-learning-7</div>
+  <div class="post-title">machine-learning-9</div>
   
 <div class="post-meta">
     
     
       <div class="post-meta-item date">
-        <span title="Created 2020.11.07"><i class="far fa-calendar-alt"></i> 2020.11.07</span>
+        <span title="Created 2020.11.11"><i class="far fa-calendar-alt"></i> 2020.11.11</span>
       </div>
       <div class="post-meta-item updated">
-        <span title="Updated 2020.11.11"><i class="far fa-calendar-check"></i> 2020.11.11</span>
+        <span title="Updated 2020.11.13"><i class="far fa-calendar-check"></i> 2020.11.13</span>
       </div>
      
     
@@ -219,10 +219,10 @@
     
      <div class="post-meta-item wordcount">
         
-          <i class="fas fa-pencil-alt"></i> <span class="post-count">434 words</span>
+          <i class="fas fa-pencil-alt"></i> <span class="post-count">1k words</span>
            
         
-          <i class="far fa-clock"></i> <span class="post-count">1 min</span>
+          <i class="far fa-clock"></i> <span class="post-count">3 min</span>
                                
       </div>
      
@@ -231,47 +231,72 @@
 
   
   <div class="content">
-        <div><h3 id="过拟合问题"><a href="#过拟合问题" class="headerlink" title="过拟合问题"></a>过拟合问题</h3><p>  能过够很好的拟合训练集样本，但是泛化(generalize)能力很烂，根本没办法使用它预测新样本。</p>
-<p> 一般来说，如果训练集的样本数量比较少，就可能会出现过度拟合的问题。</p>
-<p><strong>减少过拟合的options：</strong></p>
-<ol>
-<li><p>减少特征的数量</p>
+        <div><h4 id="神经网络（分类）"><a href="#神经网络（分类）" class="headerlink" title="神经网络（分类）"></a>神经网络（分类）</h4><p><img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn//images/2020/machine-learning/image-20201111232221883.png" alt="image-20201111232221883"></p>
+<p>在二分类任务中，y只有0或1两个值，但是在多分类任务中，$y = R^k$, 可以用[1 0 0 0]^T^ 表示一个类别。</p>
+<h4 id="代价函数"><a href="#代价函数" class="headerlink" title="代价函数"></a>代价函数</h4><blockquote>
+<p>回顾在逻辑回归中，$J(\theta)$（代价函数）的公式为<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn//images/2020/machine-learning/image-20201111232712280.png" alt="image-20201111232712280" style="zoom:67%;" /></p>
+</blockquote>
+<p>在神经网络中的代价函数的公式应该为：</p>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn//images/2020/machine-learning/image-20201111232821089.png" alt="image-20201111232821089" style="zoom:67%;" />
+
+<p>其中首先需要对不同的输出值进行cost的计算，即$\sum^{K}<em>{k = 1}$;$\Theta</em>{ji}^{(l)}$为一个矩阵，是$s_l$层到$s_{l+1}$层的权重矩阵，可以理解为$s_{l+1} = \Theta_{ji}^{(l)T} s_l$</p>
+<h4 id="反向传播算法"><a href="#反向传播算法" class="headerlink" title="反向传播算法"></a>反向传播算法</h4><img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn//images/2020/machine-learning/image-20201112084724359.png" alt="image-20201112084724359" style="zoom:67%;" />
+
+<p><strong>反向传播的推导过程：</strong></p>
+<p>其中$\delta = -\frac{dJ}{d\Theta}$，相当于在梯度下降算法$\theta_0 = \theta_0 - \alpha \frac{dJ}{d\theta_0}$学习率后面的式子，将所有层的损失都求出来，然后再更新权重($\theta$)。</p>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn//images/2020/machine-learning/image-20201113192126840.png" alt="image-20201113192126840" style="zoom:80%;"/>
+
+<p>其中$g’(z^{(3)}) = a^{(3)}.*(1 - a^{(3)})$的推导过程为：</p>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn//images/2020/machine-learning/image-20201113193808013.png" alt="image-20201113193808013" style="zoom:80%;" />
+
+<p>对于$\delta_j^{(4)} = a_j^{(4)} - y_j$的推导过程为：</p>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn//images/2020/machine-learning/image-20201113193920879.png" alt="image-20201113193920879" style="zoom:80%;" />
+
+<p>由于损失函数$J = ylog(a^{(4)}) +(1 - y)log(1 - a^{(4)})$，所以在求$\delta^{(4)}$的时候需要$a^{(4)}$来推导。</p>
+<p>对于$\delta_j^{(3)} = ((\Theta^{(3)})^{T}\delta^{(4)}.*g’(z^{(3)}))$的推导过程为：</p>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn//images/2020/machine-learning/image-20201113194947966.png" alt="image-20201113194947966" style="zoom:80%;" />
+
+<p><strong>反向传播算法的具体实现：</strong></p>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn//images/2020/machine-learning/image-20201112084947015.png" alt="image-20201112084947015" style="zoom:67%;" />
+
+<p>$\Delta$就是$\delta$的大写，首先对$\Delta$初始化，将所有的l,i,j对应的$\Delta$都初始化为0，之后遍历一个循环，从1到m，然后计算前向传播，再计算$\delta^{(l)}$，然后再计算$\delta^{(L-1)}…\delta^{(2)}$（没有$\delta^{(1)}$,不需要对输入层考虑误差项）</p>
+<h4 id="梯度检验"><a href="#梯度检验" class="headerlink" title="梯度检验"></a>梯度检验</h4><p>梯度检验的作用是用来检验反向传播计算的是否正确，每次先在数值上验证反向传播的实现是否正确即，梯度检验的值与反向传播的值近似相等，然后就可以关闭梯度检验，因为梯度检验的速度要比反向传播的速度慢。</p>
 <ul>
-<li>人工地检查特征变量，主观地减少个别不重要的特征。</li>
-<li>模型选择算法：可以自动地选择重要的特征。</li>
-</ul>
+<li><p>梯度检验的原理：</p>
+<p>①数值梯度检验：当$\theta$是实数的时候</p>
+<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn//images/2020/machine-learning/image-20201112102424135.png" alt="image-20201112102424135" style="zoom:67%;" />
+
+<p>就是$\frac{dJ(\theta)}{d\theta}\thickapprox \frac{J(\theta + \epsilon) - J(\theta - \epsilon)}{2\epsilon}$ ，当$\epsilon$取值很小的时候，就会使其和导数近乎相等，一般可以将$\epsilon$取值为10^-4^ </p>
+<p>②向量梯度检验：当$\theta$是向量参数的时候</p>
+<p>$\theta = [\theta_1, \theta_2, \theta_3, …, \theta_n]$，可以用数值梯度检验的思想来计算所有的参数，即：</p>
+<img src= "/img/loading.gif" data-src="C:%5CUsers%5CLiu%20Xinzhu%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201112103452706.png" alt="image-20201112103452706" style="zoom:67%;" />
+
+
+
 </li>
-<li><p>正则化（<strong>regularization</strong>)</p>
+</ul>
 <ul>
-<li><p>保留所有的特征，减少量集（maginitude)或者参数$\theta _j$ 的大小。</p>
+<li>梯度检验过程：<ol>
+<li>计算反向传播DVec</li>
+<li>计算数值梯度检验</li>
+<li>确认反向传播和数值梯度检验的值是近似的</li>
+<li>关闭梯度检验，使用反向传播继续学习</li>
+</ol>
 </li>
-<li><p>线性回归的代价函数公式：<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4//images/2020/machine-learning/image-20201109152704318.png" alt="image-20201109152704318" style="zoom:50%;" />        </p>
-<p>为了防止有的参数过大导致了过拟合，所以要缩小每个参数的值，在这个公示的后面加上一个正则化项：</p>
-<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn//images/2020/machine-learning/image-20201109152856123.png" alt="image-20201109152856123" style="zoom: 67%;" />
-
+</ul>
+<h4 id="随机初始化"><a href="#随机初始化" class="headerlink" title="随机初始化"></a>随机初始化</h4><p>当选择一些算法开始学习的时候需要对一些参数进行初始化，也可以将$\theta$初始化为0，但是如果全部都初始化为0，即使梯度下降计算得到的数值也会是相同的，相当于只能得到一个特征，所以需要对$\Theta_{ij}^{(l)}$进行一个随机的初始化，使其初始化为接近0的范围在$-\epsilon$到$\epsilon$之间的数，然后进行反向传播，在进行梯度检验，最后使用梯度下降来最小化代价函数$J$。</p>
+<h4 id="训练一个神经网络"><a href="#训练一个神经网络" class="headerlink" title="训练一个神经网络"></a>训练一个神经网络</h4><p>经验：当有多个隐藏层室，每一个隐藏层单元数量是一样大的。</p>
 <ul>
-<li>在这个公式中的$\lambda$是正则化参数，作用就是控制两个不同目标之间的取舍，在正则化后的公式中有两个“目标项”，其一是拟合数据的效果，即$\sum _{i = 1}^{m}(h_\theta(x^{(i)} - y^{i}))^2$;另一部分就是要保持参数尽量的小，即$\lambda \sum _{j = 1}^n \theta_j^2$部分，$\lambda$的作用就是平衡这两项，让拟合的效果很好的同时，各个参数的权重也比较优化（防止出现过度拟合的情况）。</li>
+<li><strong>训练一个神经网络的步骤：</strong><ol>
+<li>随机初始化权重$\Theta$，通常把权重初始化为很小的值接近于0</li>
+<li>计算前向传播算法，也就是对于每一个输入$x(i)$都能计算出对应的$h_\Theta(x^{(i)})$</li>
+<li>计算代价函数$J(\Theta)$</li>
+<li>通过<strong>反向传播（BP）</strong>算法来算出这些偏导数项</li>
+<li>用梯度检验法检验反向传播算法是否正确，如果两个方法得到的值近似，则关闭梯度检验继续采用反向传播进行学习</li>
+<li>采用梯度下降或者其他更优异的算法，结合反向传播使得代价函数$J(\Theta)$的值最小化。</li>
+</ol>
+</li>
 </ul>
-</li>
-</ul>
-</li>
-</ol>
-<h4 id="线性回归的正则化"><a href="#线性回归的正则化" class="headerlink" title="线性回归的正则化"></a>线性回归的正则化</h4><ol>
-<li><p><strong>梯度下降（带正则化的）</strong></p>
-<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4.2//images/2020/machine-learning/image-20201109175856748.png" alt="image-20201109175856748" style="zoom:50%;" />
-
-</li>
-</ol>
-<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn//images/2020/machine-learning/image-20201109175915769.png" alt="image-20201109175915769" style="zoom:50%;" />
-
-<ol start="2">
-<li><p><strong>Normal euqation(正规方程)</strong></p>
-<img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4.1/images/2020/machine-learning/image-20201109180043363.png" alt="image-20201109180043363" style="zoom:67%;" />
-
-<p>在正则化项的帮助下，正规方程的方法中奇异矩阵的情况会得到改善，因为正则化项的矩阵是(n + 1) × (n + 1)的，所以这个确保了它的你矩阵是存在的。</p>
-</li>
-</ol>
-<h4 id="逻辑回归的正则化"><a href="#逻辑回归的正则化" class="headerlink" title="逻辑回归的正则化"></a>逻辑回归的正则化</h4><p><img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/oowwwwww/cdn@1.4.1/images/2020/machine-learning/image-20201109181524598.png" alt="image-20201109181524598"></p>
 </div>
         
           <div class="post-copyright">
@@ -279,7 +304,7 @@
                       <span> Author: Aurora</span>
                   </div>
                   <div class="copyright-item">
-                      <span> Link: <a href="https://oowwwwww.github.io/2020/11/07/machine-learning-7/">https://oowwwwww.github.io/2020/11/07/machine-learning-7/</a></span>
+                      <span> Link: <a href="https://oowwwwww.github.io/2020/11/11/machine-learning-9/">https://oowwwwww.github.io/2020/11/11/machine-learning-9/</a></span>
                   </div>
                   <div class="copyright-item">
                       <span> License: 本博客所有文章除特别声明外，均采用许可协议 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> 转载请注明出处！</span>
@@ -329,12 +354,12 @@
     <div class="post-nav">
       
         <div class="post-nav-prev post-nav-item">
-            <a href="/2020/11/09/machine-learning-6/" >machine-learning-6<i class="fa fa-chevron-left"></i></a>
+            <a href="/2020/11/12/machine-learning-10/" >machine-learning-10<i class="fa fa-chevron-left"></i></a>
         </div>
       
       
         <div class="post-nav-next post-nav-item">
-            <a href="/2020/11/02/machine-learning-4/" >machine-learning-4<i class="fa fa-chevron-right"></i></a>
+            <a href="/2020/11/11/machine-learning-8/" >machine-learning-8<i class="fa fa-chevron-right"></i></a>
         </div>
       
     </div>
